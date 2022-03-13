@@ -1,0 +1,29 @@
+@name ROCKET sSSSS
+@inputs 
+@outputs  
+@persist S:entity AR:array H:entity 
+interval(228)
+if(owner():keyAttack2()){
+H=entitySpawn("rpg_missile",owner():pos()+vec(0,0,120)+owner():forward()+150,0)   
+H:setAng(owner():eyeAngles())   
+H:noCollide(owner())
+H:noCollide(H)
+AR=array()
+AR:pushEntity(H)
+
+
+}
+for(I=1,AR:count()){
+ if(AR[I,entity]:isValid()){   
+    
+    
+    
+}else{
+AR[I,entity]:explosion(250,500)
+
+}
+}
+if(first()){
+S=entitySpawn("env_laserdot",owner():aimPos(),0)
+}
+S:setPos(owner():aimPos())

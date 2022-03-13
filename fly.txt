@@ -1,0 +1,43 @@
+@name Fly
+@persist [Ch]:string [Own]:entity Si T Sin Col:vector
+if(first()){
+Own = owner()
+Ch = "chest"
+Col = vec(255,127,0)
+#Own:setMaterial("debug/debugdrawflat")
+function vector entity:aniPos(Att:string){
+return This:attachmentPos(Att)
+}
+function angle entity:aniAng(Att:string){
+return This:attachmentAng(Att)
+}
+
+for(I=1,5){
+Si = 25*sin(180*(I/5))
+
+}
+
+for(I=6,10){
+Si = 25*sin(180*((I-5)/5))
+
+}
+}
+interval(50)
+T+=90
+if(T>=360){T=0}
+Sin = 30*sin(T)
+for(I=1,5){
+Si = 25*sin(180*(I/5))
+holoPos(I,Own:aniPos(Ch)+vec(-20,I*7,-20+Si+Sin):rotate(Own:aniAng(Ch)))
+}
+
+for(I=6,10){
+Si = 25*sin(180*((I-5)/5))
+holoPos(I,Own:aniPos(Ch)+vec(-20,-(I-5)*7,-20+Si+Sin):rotate(Own:aniAng(Ch)))
+}
+Own = owner()
+Sp = Own:keyJump()
+W = Own:keyForward()
+if(Own:keyJump()){
+Own:setVel(vec(0,0,50)+vec(10*W,0,0):rotate(Own:eyeAngles()))
+}

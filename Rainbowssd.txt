@@ -1,0 +1,37 @@
+@name Rainbow Smokes SDragon :333
+@inputs
+@persist Ent:entity Y X Timer Color:vector T
+
+
+interval(0.0001)
+
+T++
+#by SpaceDragon
+if (T>=0&T<100) {R=T*2.55
+B=255-T*2.55}
+if (T>=100&T<200) {G=(T-100)*2.55
+R=255-(T-100)*2.55}
+if (T>=200&T<300) {B=(T-200)*2.55
+G=255-(T-200)*2.55}
+if (T>=300) {T=0}
+
+Color=vec(R,G,B)
+
+Timer=Timer*1+10
+
+X=cos(Timer)*100
+Y=sin(Timer)*100
+
+if (first()){
+    Ent=entity()
+}
+
+particleGravity(vec(0,0,0))
+particle(20,50,50,"particle/particle_smokegrenade",Color,Ent:toWorld(vec(X,Y,5)),Ent:up()*200)
+
+
+
+
+
+# time fife | Start Size | End Size | Material | Color | Position | Napravlenie :D | Speed
+
